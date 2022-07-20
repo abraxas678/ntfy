@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    command:
+      - serve
+    environment:
+      - TZ=UTC    # optional: set desired timezone
+      - VIRTUAL_HOST=dmw.zone
+    volumes:
+      - ./ntfy/cache:/var/cache/ntfy
+      - ./ntfy/config:/etc/ntfy
+    ports:
+      - 99:80
+    restart: unless-stopped
